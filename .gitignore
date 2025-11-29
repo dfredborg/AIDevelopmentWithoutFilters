@@ -1,0 +1,11 @@
+*.app
+*.g.xlf
+**/launch.json
+**/Thumbs.db
+**/.alcache
+**/.altemplates
+**/rad.json
+!**/symbols/*
+TestResults.xml
+.compilercache/
+node_modules/

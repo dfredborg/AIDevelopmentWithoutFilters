@@ -1,0 +1,33 @@
+{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "MyCoreApp",
+  "publisher": "twoday",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "logo": "./res/logo.png",
+  "url": "https://www.twoday.com",
+  "features": [
+    "TranslationFile",
+    "NoImplicitWith",
+    "NoPromotedActionProperties"
+  ],
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50000
+    }
+  ],
+  "resourceFolders": [],
+  "dependencies": [],
+  "platform": "27.0.0.0",
+  "application": "27.0.0.0",
+  "runtime": "16.0",
+  "target": "Cloud",
+  "resourceExposurePolicy": {
+    "applyToDevExtension": true,
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  }
+}

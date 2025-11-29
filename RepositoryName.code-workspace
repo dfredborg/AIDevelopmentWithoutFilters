@@ -1,0 +1,143 @@
+{
+	"folders": [
+		{
+			"name": ".alpackages",
+			"path": ".alpackages"
+		},
+		{
+			"name": ".snapshots",
+			"path": ".snapshots"
+		},
+		{
+			"name": ".roo",
+			"path": ".roo"
+		},
+		{
+			"name": ".outFolder",
+			"path": ".outFolder"
+		},
+		{
+			"name": "common",
+			"path": "common"
+		},
+		{
+			"name": "MyCoreApp",
+			"path": "apps/MyCoreApp"
+		},
+		{
+			"name": "MyCoreApp.Test",
+			"path": "apps/MyCoreApp.Test"
+		},
+		{
+			"path": "pipelines"
+		}
+	],
+	"settings": {
+		"al.codeAnalyzers": [
+			"${CodeCop}",
+			"${UICop}",
+			"${PerTenantExtensionCop}",
+			"${analyzerFolder}BusinessCentral.LinterCop.dll"
+		],
+		"al.compilationOptions": {
+			"outFolder": "../.outFolder"
+		},
+		"al.enableCodeActions": true,
+		"al.enableCodeAnalysis": true,
+		"al.incrementalBuild": true,
+		"al.packageCachePath": [
+			"../../.alpackages"
+		],
+		"al.ruleSetPath": "../../common/codeanalysis/rules.json",
+		"al.snapshotDebuggingPath": "../../.snapshots",
+		"al.snapshotOutputPath": "../../.snapshots",
+
+		"alOutline.addToolTipsToPageFields": false,
+		"alOutline.createApiFieldsCaptions": false,
+		// "alOutline.defaultApiPublisher": "",
+		// "alOutline.defaultApiGroup": "",
+		"alOutline.defaultApiVersion": "v1.0",
+		"alOutline.defaultAppArea": "All",
+		"alOutline.defaultDataClassification": "CustomerContent",
+		"alOutline.defaultListUsageCategory": "Lists",
+		"alOutline.idReservationProvider": "ALObjectIdNinja",
+		"alOutline.noEmptyLinesAtTheEndOfWizardGeneratedFiles": true,
+
+		"alOutline.codeCleanupActions": [
+			"FixKeywordsCase",
+			"FixIdentifiersCase",
+			"SortVariables",
+			"AddApplicationAreas",
+			"SortTableFields",
+			"AddMissingParentheses"
+		],
+		"alOutline.apiFieldNamesConversion": [
+			{
+				"searchRegExp": "^no$",
+				"newValue": "number"
+			},
+			{
+				"searchRegExp": "No$",
+				"newValue": "Number"
+			},
+			{
+				"searchRegExp": "^lineNo$",
+				"newValue": "sequence"
+			},
+			{
+				"searchRegExp": "^systemId$",
+				"newValue": "id"
+			},
+			{
+				"searchRegExp": "^systemModifiedAt$",
+				"newValue": "lastModifiedDateTime"
+			},
+			{
+				"searchRegExp": "^systemModifiedBy$",
+				"newValue": "lastModifiedByUserId"
+			},
+			{
+				"searchRegExp": "^systemCreatedAt$",
+				"newValue": "createdDateTime"
+			},
+			{
+				"searchRegExp": "^systemCreatedBy$",
+				"newValue": "createdByUserId"
+			}
+		],
+
+		"CRS.AlSubFolderName": "None",
+		"CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+		"CRS.ObjectNameSuffix": " TDY",
+		"CRS.OnSaveAlFileAction": "Rename",
+		"CRS.RemoveSuffixFromFilename": true,
+		"CRS.DependencyGraph.IncludeTestApps": false,
+		"CRS.DependencyGraph.ExcludeAppNames": []
+	},
+	"extensions": {
+		"recommendations": [
+			"andrzejzwierzchowski.al-code-outline",
+			"ms-dynamics-smb.al",
+			"ms-azuretools.vscode-containers",
+			"relateit.relateit-vs-code-for-business-central",
+			"vjeko.vjeko-al-objid",
+			"waldo.crs-al-language-extension",
+			"bartpermentier.al-toolbox",
+			"davidfeldhoff.al-codeactions",
+			"eamodio.gitlens",
+			"gruntfuggly.todo-tree",
+			"nabsolutions.nab-al-tools",
+			"stefanmaron.businesscentral-lintercop",
+			"usernamehw.errorlens",
+			"ms-azure-devops.azure-pipelines",
+			"ms-azuretools.vscode-azureresourcegroups",
+			"tintinweb.graphviz-interactive-preview",
+		],
+		"unwantedRecommendations": [
+			"ms-azuretools.vscode-docker",
+			"ms-vscode.azure-account",
+		]
+	}
+}

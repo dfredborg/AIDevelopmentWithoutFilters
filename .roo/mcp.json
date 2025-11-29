@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "microsoft.docs.mcp": {
+      "type": "streamable-http",
+      "url": "https://learn.microsoft.com/api/mcp",
+      "alwaysAllow": [
+        "microsoft_docs_search"
+      ]
+    },
+    "azure-devops": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure-devops/mcp@next",
+        "relateit"
+      ],
+      "alwaysAllow": [
+        "wit_my_work_items",
+        "core_list_project_teams",
+        "core_list_projects"
+      ]
+    },    
+    "al-dependencies": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "al-mcp-server"
+      ],
+      "alwaysAllow": [
+        "al_get_object_definition",
+        "al_find_references",
+        "al_search_object_members",
+        "al_get_object_summary",
+        "al_packages",
+        "al_search_objects"
+      ]
+    }
+  }
+}

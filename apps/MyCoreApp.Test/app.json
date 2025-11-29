@@ -1,0 +1,48 @@
+{
+  "id": "00000000-0000-0000-0000-000000000002",
+  "name": "MyCoreApp TestApp",
+  "publisher": "twoday",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "logo": "./res/logo.png",
+  "url": "https://www.twoday.com",
+  "features": [],
+  "idRanges": [
+    {
+      "from": 60000,
+      "to": 60000
+    }
+  ],
+  "resourceFolders": [],
+  "dependencies": [
+    {
+      "id": "00000000-0000-0000-0000-000000000001",
+      "name": "MyCoreApp",
+      "publisher": "twoday",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "dd0be2ea-f733-4d65-bb34-a28f4624fb14",
+      "publisher": "Microsoft",
+      "name": "Library Assert",
+      "version": "25.0.0.0"
+    },
+    {
+      "id": "5d86850b-0d76-4eca-bd7b-951ad998e997",
+      "publisher": "Microsoft",
+      "name": "Tests-TestLibraries",
+      "version": "25.0.0.0"
+    }
+  ],
+  "platform": "27.0.0.0",
+  "application": "27.0.0.0",
+  "runtime": "16.0",
+  "target": "Cloud",
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true,
+    "applyToDevExtension": true
+  }
+}
