@@ -1,5 +1,5 @@
 {
-  "id": "00000000-0000-0000-0000-000000000002",
+  "id": "f181f100-587c-40bc-bb94-df4a3437da70",
   "name": "MyCoreApp TestApp",
   "publisher": "twoday",
   "version": "1.0.0.0",
@@ -11,13 +11,13 @@
   "idRanges": [
     {
       "from": 60000,
-      "to": 60000
+      "to": 60100
     }
   ],
   "resourceFolders": [],
   "dependencies": [
     {
-      "id": "00000000-0000-0000-0000-000000000001",
+      "id": "3ec6a21b-c68f-4b89-9050-e9743718315a",
       "name": "MyCoreApp",
       "publisher": "twoday",
       "version": "1.0.0.0"
