@@ -15,5 +15,5 @@
   * ❌ `codeunit 50100 "DEF_Sales Calculation"` (Do not use underscores unless necessary)
 
 ## 3. Environment
-* **Target Version:** Business Central 24.0 (Current) or higher.
+* **Target Version:** Business Central 27.0 (Current) or higher.
 * **Manifest:** Ensure `app.json` dependencies are respected.
