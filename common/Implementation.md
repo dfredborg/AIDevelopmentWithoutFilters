@@ -25,10 +25,14 @@ Expose the staging tables to the external webshop.
 ### Phase 4: Processing Logic
 Implement the business logic to transform Staging data into Sales Documents.
 - Create a processing Codeunit.
+- Target Document Type: **Sales Order**.
+- Number Series: Use the **Standard Number Series** defined in Sales & Receivables Setup.
 - Implement validation logic (e.g., finding Customer No. by Email, Item No. by SKU).
 - Implement error handling:
   - Wrap processing in a way that captures errors.
   - Update Staging Status to `Error` and populate `Error Message` on failure.
+  - **No email notifications** and **no automatic retries** will be implemented.
+  - The workflow relies on the user manually correcting data in the Staging pages and re-triggering the process.
   - Update Staging Status to `Completed` on success.
 
 ### Phase 5: Execution & Automation
@@ -43,8 +47,8 @@ All objects will follow the `DEF` prefix and reside in the `50100..50200` ID ran
 ### Tables
 | ID | Name | Description |
 | :--- | :--- | :--- |
-| 50100 | `DEF Webshop Header Staging` | Stores raw order header data. Fields: Order ID, Customer Info, Dates, Status, Error Message. |
-| 50101 | `DEF Webshop Line Staging` | Stores raw order line data. Linked to Header. Fields: SKU, Quantity, Price. |
+| 50100 | `DEF Webshop Header Staging` | Stores raw order header data. <br> **Primary Key:** Webshop Order No. <br> **Fields:** <br> - **General:** Webshop Order No., Order Date <br> - **Customer:** Customer Email, Customer Name, Customer Phone <br> - **Billing Address:** Name, Address, Address 2, City, Post Code, Country Code <br> - **Shipping Address:** Name, Address, Address 2, City, Post Code, Country Code <br> - **Payment/Shipping:** Payment Method, Payment Reference, Payment Status, Shipping Method, Shipping Cost <br> - **Totals:** Currency, Order Total, Order Subtotal, Tax Amount, Discount Amount <br> - **Notes:** Customer Note, Internal Note <br> - **System:** Status, Error Message |
+| 50101 | `DEF Webshop Line Staging` | Stores raw order line data. Linked to Header. <br> **Primary Key:** Webshop Order No., Line No. <br> **Table Relation:** Webshop Order No. -> DEF Webshop Header Staging <br> **Fields:** <br> - **Link:** Webshop Order No. <br> - **Line Info:** Line No., Webshop Product ID, Product SKU, Description <br> - **Values:** Quantity, Unit Price, Line Amount, Discount Percent, Discount Amount, Tax Percent, Tax Amount |
 
 ### Pages (UI)
 | ID | Name | Description |
@@ -63,25 +67,3 @@ All objects will follow the `DEF` prefix and reside in the `50100..50200` ID ran
 | ID | Name | Description |
 | :--- | :--- | :--- |
 | 50107 | `DEF Webshop Processing` | Contains logic to validate staging data and create `Sales Header` / `Sales Line`. |
-
-## Questions & Clarifications
-
-Before proceeding with the detailed AL coding, the following points need clarification:
-
-1.  **Field Mapping:**
-    *   Which specific fields from the webshop need to be mapped to the Sales Header? (e.g., External Document No., Requested Delivery Date, Ship-to Address details).
-    *   How should we identify the Customer? (e.g., by Email, Phone No., or a specific Webshop ID stored in a custom field on the Customer card?)
-    *   How should we identify Items? (e.g., by No., GTIN, or Vendor Item No.?)
-
-2.  **Error Handling:**
-    *   Should the system send an email notification to an administrator when a staging record fails to process?
-    *   Do we need a retry mechanism for specific types of errors (e.g., record locking)?
-
-3.  **API Authentication:**
-    *   Will the external webshop use OAuth2 or Basic Auth (Web Service Access Key)? This affects how we document the connection setup, though not necessarily the AL code itself.
-
-4.  **Sales Document Type:**
-    *   Should these be created as `Sales Orders` or `Sales Quotes` initially?
-
-5.  **Number Series:**
-    *   Should the created Sales Documents use the standard Number Series, or should we try to force the Webshop Order ID as the Sales Order No. (if compatible)?

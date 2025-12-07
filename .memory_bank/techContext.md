@@ -1,30 +1,29 @@
 # Tech Context
 
-## Technology Stack
-*   **Platform:** Microsoft Dynamics 365 Business Central
-*   **Version:** 27.0 (Target: Cloud)
-*   **Language:** AL (Application Language)
-*   **Runtime:** 16.0
+## Technologies
+*   **Platform:** Microsoft Dynamics 365 Business Central (AL Language).
+*   **Integration Method:** REST API (OData V4).
+*   **Data Format:** JSON.
 
 ## Development Environment
-*   **IDE:** Visual Studio Code
-*   **Extensions:** AL Language Extension
-*   **Linter:** AppSourceCop (Enabled)
-*   **Configuration:**
-    *   `NoImplicitWith`: Enabled
-    *   `NoPromotedActionProperties`: Enabled
+*   **Language:** AL (Application Language).
+*   **IDE:** Visual Studio Code with AL Language extension.
+*   **Version Control:** Git.
 
 ## Dependencies
-*   **Base Application:** Standard Business Central application.
-*   **System Application:** Core system libraries.
-*   *(No external app dependencies listed in `app.json`)*
+*   **Standard Business Central Modules:**
+    *   Sales & Receivables (Sales Header, Sales Line).
+    *   No. Series Management.
 
-## Integration Architecture
-*   **Protocol:** OData V4 / REST API (Standard Business Central APIs)
-*   **Authentication:** OAuth2 (Standard for Cloud) or Basic Auth (Web Service Access Key - Deprecated but possible for specific scenarios, though OAuth is preferred).
-*   **Data Format:** JSON
+## Configuration
+*   **ID Range:** `50100..50200`.
+*   **Prefix:** `DEF`.
 
-## Key Technical Constraints
-*   **Object IDs:** Restricted to `50100..50200`.
-*   **Field Types:** Staging tables use `Text[1024]` for maximum flexibility during ingestion.
-*   **API Limits:** Standard Business Central API limits apply (rate limiting, payload size).
+## Project Structure
+*   `src/`: Source code root.
+    *   `tables/`: Table definitions (`.al` files).
+    *   `pages/`: Page definitions (UI and API).
+    *   `codeunits/`: Business logic.
+*   `Implementation.md`: Detailed implementation plan.
+*   `Progress.md`: Task tracking.
+*   `payload.json`: Sample JSON payload for testing.

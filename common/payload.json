@@ -1,0 +1,89 @@
+{
+  "webshopOrderNo": "WEB-2024-001234",
+  "orderDate": "2024-11-20T14:30:00Z",
+  "customerEmail": "john.smith@example.com",
+  "customerName": "John Smith",
+  "customerPhone": "+45 12 34 56 78",
+  "billingAddress": {
+    "name": "John Smith",
+    "address": "Hovedgaden 123",
+    "address2": "2. sal",
+    "city": "København",
+    "postCode": "2100",
+    "countryRegionCode": "DK"
+  },
+  "shippingAddress": {
+    "name": "John Smith",
+    "address": "Hovedgaden 123",
+    "address2": "2. sal",
+    "city": "København",
+    "postCode": "2100",
+    "countryRegionCode": "DK"
+  },
+  "paymentMethod": "Credit Card",
+  "paymentReference": "PAY-CC-789456123",
+  "paymentStatus": "Paid",
+  "shippingMethod": "Standard Delivery",
+  "shippingCost": 49.00,
+  "currency": "DKK",
+  "orderTotal": 1847.50,
+  "orderSubtotal": 1798.50,
+  "taxAmount": 359.70,
+  "discountAmount": 0.00,
+  "customerNote": "Please ring doorbell twice",
+  "internalNote": "",
+  "orderLines": [
+    {
+      "lineNo": 1,
+      "webshopProductId": "PROD-12345",
+      "productSKU": "LAP-DELL-XPS13",
+      "description": "Dell XPS 13 Laptop - 16GB RAM, 512GB SSD",
+      "quantity": 1,
+      "unitPrice": 1299.00,
+      "lineAmount": 1299.00,
+      "discountPercent": 0.00,
+      "discountAmount": 0.00,
+      "taxPercent": 25.00,
+      "taxAmount": 259.80
+    },
+    {
+      "lineNo": 2,
+      "webshopProductId": "PROD-67890",
+      "productSKU": "MOUSE-LOG-MX3",
+      "description": "Logitech MX Master 3 Mouse",
+      "quantity": 2,
+      "unitPrice": 99.00,
+      "lineAmount": 198.00,
+      "discountPercent": 0.00,
+      "discountAmount": 0.00,
+      "taxPercent": 25.00,
+      "taxAmount": 39.60
+    },
+    {
+      "lineNo": 3,
+      "webshopProductId": "PROD-45678",
+      "productSKU": "KB-LOG-K380",
+      "description": "Logitech K380 Wireless Keyboard",
+      "quantity": 1,
+      "unitPrice": 252.50,
+      "lineAmount": 252.50,
+      "discountPercent": 0.00,
+      "discountAmount": 0.00,
+      "taxPercent": 25.00,
+      "taxAmount": 50.50
+    },
+    {
+      "lineNo": 4,
+      "webshopProductId": "PROD-99999",
+      "productSKU": "SHIPPING",
+      "description": "Standard Delivery",
+      "quantity": 1,
+      "unitPrice": 49.00,
+      "lineAmount": 49.00,
+      "discountPercent": 0.00,
+      "discountAmount": 0.00,
+      "taxPercent": 25.00,
+      "taxAmount": 9.80
+    }
+  ]
+}

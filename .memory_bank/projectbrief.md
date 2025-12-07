@@ -1,19 +1,17 @@
 # Project Brief: Webshop Integration
 
 ## Overview
-This project implements a robust integration strategy between an external webshop and Microsoft Dynamics 365 Business Central. The core design philosophy is to decouple data ingestion from business logic validation using a "Staging Pattern." This ensures that external data is always received successfully, even if it contains validation errors, allowing for asynchronous processing and manual correction within Business Central.
+This project aims to integrate an external webshop with Microsoft Dynamics 365 Business Central using a robust Staging Pattern. The primary objective is to decouple data reception from business logic validation to ensure 100% successful data ingestion, regardless of data quality at the entry point.
 
-## Core Goals
-1.  **Decoupled Architecture:** Separate the API data reception from the complex business logic required to create Sales Documents.
-2.  **100% Ingestion Success:** Use "loose" staging tables with text-based fields to prevent API failures due to data type mismatches or truncation.
-3.  **Graceful Error Handling:** Capture validation errors during the processing phase (not the ingestion phase) and log them for user review.
-4.  **User Empowerment:** Provide a UI for users to view raw staging data, see error messages, and make manual corrections before re-processing.
+## Core Requirements
+1.  **Staging Pattern:** Implement "loose" staging tables with text-based fields to accept raw data without validation errors during ingestion.
+2.  **Data Ingestion:** Expose API endpoints for external systems to push order data (Header and Lines) into Business Central.
+3.  **Error Handling:** Validation logic must be applied *after* ingestion. Errors should be logged in the staging tables, allowing manual correction via UI without blocking the initial transfer.
+4.  **Processing Logic:** A dedicated routine will transform valid staging data into standard Sales Orders.
+5.  **User Interface:** Provide Business Central pages for users to view, edit, and retry processing of staging records.
 
-## Key Features
-*   **Staging Tables:** `DEF Webshop Header Staging` and `DEF Webshop Line Staging` to hold raw data.
-*   **API Endpoints:** Standard CRUD APIs exposing the staging tables to the external webshop.
-*   **Processing Logic:** A dedicated Codeunit to validate staging data (e.g., mapping Email to Customer No., SKU to Item No.) and convert it into standard Sales Orders/Quotes.
-*   **Status Tracking:** A workflow status on staging records (`Pending`, `Completed`, `Error`) to manage the lifecycle of incoming orders.
-
-## Scope
-The project covers the end-to-end flow from API reception to the creation of a Sales Header and Sales Lines. It includes the database structure, user interface, API layer, and business logic for processing.
+## Success Criteria
+*   External webshop can successfully POST order data to Business Central APIs without 400/500 errors due to data validation (e.g., missing customer, wrong data type).
+*   Users can view raw data in Business Central.
+*   Users can correct data errors (e.g., fix a typo in an email address) and re-process the order.
+*   Valid orders are converted to Sales Orders.

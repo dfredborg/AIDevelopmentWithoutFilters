@@ -1,67 +1,39 @@
 # System Patterns
 
-## Architecture: The Staging Pattern
-The system follows a **Staging Pattern** architecture, divided into three distinct layers:
+## Architecture
+The system follows a **Staging Table Pattern** (also known as an Interface Table pattern) to integrate external data.
 
-1.  **Ingestion Layer (API & Staging Tables):**
-    *   **Goal:** High availability and fault tolerance for incoming data.
-    *   **Mechanism:** API Pages expose Staging Tables.
-    *   **Data Structure:** Fields are primarily `Text` types to accept any input without validation errors.
-    *   **Components:** `DEF Webshop Header Staging`, `DEF Webshop Line Staging`, `DEF Webshop Header API`, `DEF Webshop Line API`.
+### Components
+1.  **Staging Tables (`DEF Webshop Header Staging`, `DEF Webshop Line Staging`):**
+    *   Act as a buffer between the external API and internal Business Central logic.
+    *   Use `Text` data types for almost all fields to prevent ingestion errors.
+    *   Include status tracking (`Pending`, `Completed`, `Error`) and error logging fields.
+2.  **API Pages:**
+    *   Expose the Staging Tables as OData/REST endpoints.
+    *   Allow standard CRUD operations (primarily Create).
+    *   Include an Unbound Action (`processOrder`) to trigger processing immediately after upload.
+3.  **Processing Codeunit:**
+    *   Contains the business logic to validate and transform Staging data into Sales Documents.
+    *   Handles error trapping to ensure the process doesn't crash, but instead updates the Staging record status.
+4.  **UI Pages:**
+    *   Standard List and Card pages for users to view and correct Staging data.
 
-2.  **Processing Layer (Business Logic):**
-    *   **Goal:** Validate, transform, and convert data.
-    *   **Mechanism:** A dedicated Codeunit processes staging records.
-    *   **Logic:**
-        *   Validates existence of master data (Customer, Item).
-        *   Performs mapping (e.g., Email -> Customer No.).
-        *   Creates standard Business Central documents (Sales Header, Sales Line).
-    *   **Components:** `DEF Webshop Processing` Codeunit.
+## Design Patterns
 
-3.  **Presentation Layer (UI):**
-    *   **Goal:** Visibility and manual error correction.
-    *   **Mechanism:** Standard List and Card pages for Staging tables.
-    *   **Components:** `DEF Webshop Header List`, `DEF Webshop Header Card`, `DEF Webshop Lines Part`.
+### Loose Coupling
+The external system does not need to know about Business Central's internal validation rules (e.g., that a Customer No. must exist). It simply dumps the data it has, and Business Central handles the mapping and validation internally.
 
-## Design Patterns & Rules
+### Error Handling Strategy
+*   **Ingestion:** Failures should be rare (only if the JSON structure is invalid or the API is down).
+*   **Processing:** Failures are expected (e.g., new customer, unknown item). These are caught, logged to the Staging record, and the status is set to `Error`.
+*   **Retry:** No automatic retries. Users manually correct data and re-trigger the process.
 
-### 1. Object ID Management
-*   **Range:** `50100` to `50200`
-*   **Strict Enforcement:** No objects outside this range.
+### Naming Conventions
+*   **Prefix:** All objects use the `DEF` prefix.
+*   **ID Range:** `50100..50200`.
+*   **Table Names:** `DEF Webshop Header Staging`, `DEF Webshop Line Staging`.
 
-### 2. Naming Conventions
-*   **Prefix:** `DEF` (Global prefix for all objects).
-*   **Length:** Maximum 30 characters (excluding prefix).
-*   **Pattern:** `[Prefix] [Object Name]` (e.g., `DEF Webshop Header`).
-*   **Files:** `[Prefix][ObjectName].[ObjectType].al` (e.g., `DEFWebshopHeader.Table.al`).
-
-### 3. Single Responsibility Principle (SRP)
-*   **Tables:** Store data only. No complex logic.
-*   **Pages:** Display data only. No business logic in triggers.
-*   **Codeunits:** Contain all business logic.
-    *   `DEF Webshop Processing`: Handles the conversion logic.
-    *   Separate validation logic if complexity grows.
-
-### 4. Namespace Strategy
-*   **Requirement:** All files must define a namespace.
-*   **Structure:** Matches folder structure (e.g., `namespace MyCompany.Sales.Integration;`).
-
-### 5. Testability
-*   **Dependency Injection:** Logic should be decoupled to allow for unit testing.
-*   **Test App:** All tests reside in `apps/MyCoreApp.Test`.
-
-### 6. Singleton Pattern
-*   **Usage:** If a setup table is required (e.g., `DEF Webshop Setup`), use the Singleton pattern (Get/Init/Insert) to ensure a single configuration record exists.
-
-## Folder Structure
-The project follows a feature-based folder structure:
-```
-apps/MyCoreApp/src/
-├── Integration/
-│   ├── Webshop/
-│   │   ├── Tables/
-│   │   ├── Pages/
-│   │   ├── API/
-│   │   └── Codeunits/
-```
-*(Note: While the rules suggest grouping by feature, subfolders for object types within a feature are acceptable for clarity if the feature is large, but the primary grouping is the Feature "Webshop".)*
+## Technical Standards
+*   **Data Types:** Use `Text[1024]` for staging fields to accommodate varying input lengths and formats.
+*   **Keys:** Primary Key for Header is `Webshop Order No.`. Primary Key for Line is `Webshop Order No., Line No.`.
+*   **Table Relations:** Lines are linked to Headers via `Webshop Order No.`.

@@ -1,20 +1,22 @@
 # Active Context
 
 ## Current Focus
-Initializing the Memory Bank for the Webshop Integration project. This involves creating the core documentation files that will guide the development process and ensure alignment with the project's architectural goals.
+The project is currently in **Phase 1: Data Structure**. The primary focus is setting up the database tables to receive data from the external webshop.
 
 ## Recent Changes
-*   Created `projectbrief.md`: Defined the project scope and core goals.
-*   Created `productContext.md`: Explained the "Why" and the problem/solution fit.
-*   Created `systemPatterns.md`: Documented the Staging Pattern architecture and coding rules.
-*   Created `techContext.md`: Outlined the technology stack and environment.
+*   **2025-12-07:**
+    *   Created `DEF Webshop Header Staging` table (ID 50100).
+    *   Created `DEF Webshop Line Staging` table (ID 50101).
+    *   Established the Memory Bank structure (`projectbrief.md`, `productContext.md`, `systemPatterns.md`, `techContext.md`, `activeContext.md`).
 
 ## Next Steps
-1.  **Clarify Requirements:** Address the open questions in `common/Implementation.md` (Field Mapping, Error Handling, etc.) before starting code implementation.
-2.  **Phase 1 Implementation:** Begin creating the Staging Tables (`DEF Webshop Header Staging`, `DEF Webshop Line Staging`).
-3.  **Phase 2 Implementation:** Create the UI pages for the staging tables.
+1.  **Phase 2: User Interface (UI)**
+    *   Create List Page for Header Staging.
+    *   Create Card Page for Header Staging.
+    *   Create ListPart Page for Line Staging.
+2.  **Phase 3: API Layer**
+    *   Create API Pages for Header and Line tables.
 
 ## Active Decisions
-*   **Staging Pattern:** Confirmed as the architectural choice.
-*   **Object ID Range:** `50100..50200` is locked in.
-*   **Prefix:** `DEF` is mandatory.
+*   **Staging Pattern:** Confirmed use of "loose" staging tables with `Text` fields to minimize ingestion errors.
+*   **No Automatic Retries:** The system will rely on manual correction and re-processing by users rather than automated retry logic for validation errors.
