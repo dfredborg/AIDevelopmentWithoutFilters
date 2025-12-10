@@ -1,3 +1,5 @@
+namespace fredborg.webshop;
+
 table 50100 "DEF Webshop Header Staging TDY"
 {
     Caption = 'DEF Webshop Header Staging';

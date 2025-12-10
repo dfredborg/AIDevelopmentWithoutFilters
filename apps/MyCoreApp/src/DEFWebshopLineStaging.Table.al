@@ -1,3 +1,5 @@
+namespace fredborg.webshop;
+
 table 50101 "DEF Webshop Line Staging TDY"
 {
     Caption = 'DEF Webshop Line Staging';
@@ -9,7 +11,7 @@ table 50101 "DEF Webshop Line Staging TDY"
         field(1; "Webshop Order No."; Text[100])
         {
             Caption = 'Webshop Order No.';
-            TableRelation = "DEF Webshop Header Staging"."Webshop Order No.";
+            TableRelation = "DEF Webshop Header Staging TDY"."Webshop Order No.";
         }
         field(2; "Line No."; Integer)
         {

@@ -20,10 +20,13 @@
 *   **Prefix:** `DEF`.
 
 ## Project Structure
-*   `src/`: Source code root.
-    *   `tables/`: Table definitions (`.al` files).
-    *   `pages/`: Page definitions (UI and API).
-    *   `codeunits/`: Business logic.
-*   `Implementation.md`: Detailed implementation plan.
-*   `Progress.md`: Task tracking.
-*   `payload.json`: Sample JSON payload for testing.
+*   `apps/MyCoreApp/src/`: Source code root.
+    *   `DEFWebshopHeaderStaging.Table.al`: Header Staging Table.
+    *   `DEFWebshopLineStaging.Table.al`: Line Staging Table.
+    *   `DEFWebshopHeaderList.Page.al`: Header List Page.
+    *   `DEFWebshopHeaderCard.Page.al`: Header Card Page.
+    *   `DEFWebshopLinesPart.Page.al`: Lines ListPart Page.
+    *   `DEFWebshopHeaderAPI.Page.al`: Header API Page.
+    *   `DEFWebshopLineAPI.Page.al`: Line API Page.
+*   `common/Implementation.md`: Detailed implementation plan.
+*   `common/payload.json`: Sample JSON payload for testing.

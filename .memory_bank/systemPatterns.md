@@ -4,19 +4,22 @@
 The system follows a **Staging Table Pattern** (also known as an Interface Table pattern) to integrate external data.
 
 ### Components
-1.  **Staging Tables (`DEF Webshop Header Staging`, `DEF Webshop Line Staging`):**
-    *   Act as a buffer between the external API and internal Business Central logic.
-    *   Use `Text` data types for almost all fields to prevent ingestion errors.
-    *   Include status tracking (`Pending`, `Completed`, `Error`) and error logging fields.
+1.  **Staging Tables:**
+    *   `DEF Webshop Header Staging` (Table 50100)
+    *   `DEF Webshop Line Staging` (Table 50101)
+    *   **Pattern:** "Loose" typing (Text[1024]) to minimize ingestion errors. Status tracking (`Pending`, `Completed`, `Error`).
 2.  **API Pages:**
-    *   Expose the Staging Tables as OData/REST endpoints.
-    *   Allow standard CRUD operations (primarily Create).
-    *   Include an Unbound Action (`processOrder`) to trigger processing immediately after upload.
-3.  **Processing Codeunit:**
-    *   Contains the business logic to validate and transform Staging data into Sales Documents.
-    *   Handles error trapping to ensure the process doesn't crash, but instead updates the Staging record status.
-4.  **UI Pages:**
-    *   Standard List and Card pages for users to view and correct Staging data.
+    *   `DEF Webshop Header API` (Page 50105)
+    *   `DEF Webshop Line API` (Page 50106)
+    *   **Pattern:** Standard API pages exposing the staging tables. Future: Will include an Unbound Action to trigger processing.
+3.  **UI Pages:**
+    *   `DEF Webshop Header List` (Page 50102)
+    *   `DEF Webshop Header Card` (Page 50103)
+    *   `DEF Webshop Lines Part` (Page 50104)
+    *   **Pattern:** Standard Business Central UI for manual error correction and review.
+4.  **Processing Codeunit (Planned):**
+    *   Will contain the business logic to validate and transform Staging data into Sales Documents.
+    *   **Pattern:** Try-Function or Error trapping to update Staging status instead of rolling back the transaction.
 
 ## Design Patterns
 

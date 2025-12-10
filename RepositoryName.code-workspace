@@ -48,7 +48,7 @@
 		"al.packageCachePath": [
 			"../../.alpackages"
 		],
-		"al.ruleSetPath": "../../common/codeanalysis/rules.json",
+		
 		"al.snapshotDebuggingPath": "../../.snapshots",
 		"al.snapshotOutputPath": "../../.snapshots",
 
