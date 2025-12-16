@@ -1,6 +1,8 @@
 namespace fredborg.webshop;
 
-page 50105 "DEF Webshop Header API"
+using fredborg.webshop;
+
+page 50105 "DEF Webshop Header API TDY"
 {
     PageType = API;
     APIPublisher = 'myCompany';
@@ -154,4 +156,12 @@ page 50105 "DEF Webshop Header API"
             }
         }
     }
+
+    procedure Process()
+    var
+        WebshopProcessing: Codeunit "DEF Webshop Processing TDY";
+    begin
+        WebshopProcessing.Process(Rec);
+    end;
+
 }

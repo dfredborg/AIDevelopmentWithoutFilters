@@ -61,4 +61,26 @@ page 50102 "DEF Webshop Header List"
             }
         }
     }
+
+    actions
+    {
+        area(Processing)
+        {
+            action(ProcessOrder)
+            {
+                ApplicationArea = All;
+                Caption = 'Process Order';
+                ToolTip = 'Validates and converts the staging record to a Sales Order.';
+                Image = Process;
+
+                trigger OnAction()
+                var
+                    WebshopProcessing: Codeunit "DEF Webshop Processing TDY";
+                begin
+                    WebshopProcessing.Process(Rec);
+                    CurrPage.Update();
+                end;
+            }
+        }
+    }
 }
