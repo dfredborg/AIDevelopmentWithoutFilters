@@ -38,7 +38,7 @@ Implement the business logic to transform Staging data into Sales Documents.
 ### Phase 5: Execution & Automation
 Enable triggering the processing logic.
 - Add a "Process" action to the Staging Page UI.
-- Create an Unbound Action in the API to allow the webshop to trigger processing immediately after upload.
+- Create an Bound Action in the API to allow the webshop to trigger processing immediately after upload.
 
 ## Technical Specifications
 
